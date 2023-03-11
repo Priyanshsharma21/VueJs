@@ -1,0 +1,33 @@
+Data processing friom js to html abd v.v
+
+v-model -> use for 2 way binding in input, select, textarea
+
+
+ex - >
+    <h2 class="display-3">Single hero</h2>
+        <select v-model="heroSelect" class="form-select">
+                <option selected value="">Choose A Super Hero</option>
+                <option>Chota Bheem</option>
+                <option>Doremon</option>
+                <option>Baki</option>
+                <option>Sitama - Hero For Fun</option>
+        </select>
+    <h2 class="btn bg-warning mt-3">calling, {{heroSelect}}</h2>
+
+    heroSelect is a string, heroSelect="", v-model will modle the value
+
+
+
+
+    <!-- 2 way binding  -->
+        <h2 class="display-3">Bond Team</h2>
+        <select v-model="myDynamic" class="form-select">
+            <option selected value="">Choose Multiple Super Hero</option>
+            <option
+            v-for="(item,index) in myBond"
+            :key="item.id"
+            :value="item.value">{{item.text}}</option>
+        </select>
+        <h2 class="btn bg-warning mt-3">Bond Team, {{myDynamic}}</h2>
+
+        here we are taking value from js and then sending data from html back to js

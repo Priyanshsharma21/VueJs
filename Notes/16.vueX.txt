@@ -1,0 +1,355 @@
+VueX is state managment library for VueJs.
+We pass data from parent to child component through props.
+Now when our application grows then this become very ocomplex and we can;t move our state to parent component and send it to child component (Prop drilling) hence we have to use state mgmt lib such as Vuex
+
+VueX is basically have store which is single source of truth.
+It means single object which have state of your application and server as single source of truth.
+
+
+
+
+
+
+
+
+Vuex is a state management library for Vue.js applications. It allows you to centralize the state of your application in a single store, making it easy to share and manage the state across different components.
+
+A common example of using Vuex is for a shopping cart. Here's a basic example of how you might set up a Vuex store for a shopping cart:
+
+
+using vueCLI we can install it like -> vue create projectName ----->Manually install --> with router and vuex.
+
+Example -> Shopping cart ->
+
+
+
+import { createStore } from 'vuex'
+
+export default createStore({
+  state: {
+    cart: []
+  },
+  mutations: {
+    addToCart(state, item) {
+      state.cart.push(item)
+    },
+    removeFromCart(state, item) {
+      let index = state.cart.indexOf(item)
+      state.cart.splice(index, 1)
+    }
+  },
+  actions: {
+    addToCart({ commit }, item) {
+      commit('addToCart', item)
+    },
+    removeFromCart({ commit }, item) {
+      commit('removeFromCart', item)
+    }
+  },
+  getters: {
+    cartTotal(state) {
+      return state.cart.reduce((total, item) => total + item.price, 0)
+    }
+  }
+})
+
+
+
+
+state(data): An object that contains the data for our application. In this example, we have a single property called cart that represents the items in the user's shopping cart.
+
+mutations(function - to modify state): An object that contains functions that can modify the state. In this example, we have two mutations: addToCart and removeFromCart, which add and remove items from the cart, respectively.
+
+actions(object): An object that contains functions that can dispatch mutations. In this example, we have two actions: addToCart and removeFromCart, which commit the corresponding mutations.
+
+getters(computed): An object that contains functions that can compute derived state based on the current state. In this example, we have a single getter called cartTotal that calculates the total price of all items in the cart.
+
+
+
+
+
+
+
+
+
+
+!What I learned about Vuex till now ->
+
+Vuex is official state management library for vueJs.
+It consist of a store which is single source of truth.
+
+!Installation ->
+
+vue create proj__name
+or 
+npm create vite@latest
+
+
+!Setup ->
+
+Make store dir in src -> Inside store make index.js
+
+Noe import store.js in main.js and use it as middleware
+app.use(store)
+
+
+
+!Setup of store->
+
+import { createStore } from 'vuex'
+
+export default createStore({
+  state: {
+    
+  },
+  mutations: {
+    
+  },
+  actions: {
+    
+  },
+  getters: {
+    
+})
+
+
+
+
+* 1.State (data)-> It refers to piece of information we want to store. 
+
+ state: {
+    products : [],
+    cart : [],
+},
+
+
+* 2. Mutation (State Updater) -> Mutation contain functions which is used to update the store data.
+
+Notes ->
+1. To access the store we can use -> this.$store
+
+
+2. Methods inside the mutation accept two arguments, (state, payload)
+State -> The state(data) we have decleared in state which need to be update, we can use it by (.) notation or destructure it.
+Like -> state.products or state.cart. Inside the method of mutation.
+
+
+3. Althought we can send payload to update the state from any component using : 
+this.$store.commit('setProducts', products)
+But
+In VueJs what we do is, not directly call the methods inside the mutation to update the state, we use action for that.
+
+In any component we dispatch action by passing the name of the method inside the action and action will call the mutation for update state.
+
+mutations: {
+
+    setProducts(state, payload){
+        state.products = payload;
+    },
+
+    pushProductToCart(state,productId){
+      state.cart.push({
+        id : productId,
+        quantity : 1,
+      })
+    },
+
+    incrementItemQuantity(state,cartItem){
+      cartItem.quantity++
+    },
+
+    decrementProductInventory(state,product){
+      product.inventory--
+    },
+
+    emptyCart(state){
+      state.cart = []
+    },
+
+    setCheckoutStatus(state, status){
+      state.checkoutStatus = status
+    }
+
+  },
+
+
+
+*3. Action -> This are the Objects, An object that contains functions that can dispatch mutations.
+Action responsible for mutation,
+Mutation responsible for State Update.
+
+Note ->
+1. In Action there are functions, Now this function are responsible for triggering the mutation by sending type and payload.
+
+2. Every function inside the action accept two parameters.
+  1. context.
+  2. payload.
+
+This context have things like -> commit, state, getters. So we can destructure them from it.
+
+Ex -> addProductToCart({state, getters, commit}, product)
+a. Using the state we can access the state -> products or cart.
+b. Using commit we can trigger the mutation :
+ commit('NAME_OF_MUTATION', PAYLOAD) -> commit('pushProductToCart', product.id)
+c. Using getters we can access to getters.
+
+
+3. From any component in order to dispatch the action we use dispatch.
+this.$store.dispatch(Name_Of_Action, payload(optional))
+
+this.$store.dispatch('addProductToCart', product)--------> Inside the method in any component
+
+
+
+
+ actions: {
+
+    fetchProducts({commit}){
+        return new Promise((resolve, reject) => {
+          shop.getProducts(products=>{
+            commit('setProducts', products)
+            resolve()
+          })
+        })
+    },
+
+    
+
+    addProductToCart({state,getters,commit}, product){
+      if(getters.productInStokes(product)){
+        const cartItem = state.cart.find(item=> item.id === product.id)
+
+        if(!cartItem){
+          commit('pushProductToCart', product.id)
+        }else{
+          commit('incrementItemQuantity', cartItem)
+        }
+
+        commit('decrementProductInventory', product)
+
+      }
+    },
+
+
+    checkout({state,commit}){
+      shop.buyProducts(
+        state.cart,
+        ()=>{
+          commit('emptyCart')
+          commit('setCheckoutStatus', 'Success')
+        },
+
+        ()=>{
+          commit('setCheckoutStatus', 'Fail')
+        }
+      )
+    },
+  },
+
+
+
+
+* 4. Getters (computed) -> An object that contains functions that can compute derived state based on the current state.
+
+As we know that getters are used to make changes based on current data.
+When we cant to do something with current data(state) at runtime then we use getters -> 
+
+Notes - 
+
+1. Getters have function which accept two params -> state and getters(other getters)
+Using state.name_of_state -> we can access the state and do some operation.
+It don't accept any external params like others.
+All of this functions returns some data which we can use in our app.
+
+2. Using getters.Name_of_other_getter we can access data return from other getters.
+
+3. In any component we can use getters by -> 
+this.$store.getters.Name_of_getter
+this.$store.getters.productInStokes --------> we can use it inside the computed(because we are somputing some value)
+
+
+
+
+
+ getters: {
+
+    availableProduct(state, getters){
+      return state.products.filter(product=>product.inventory > 0) 
+    },
+
+    cartProducts(state){
+      return state.cart.map(cartItem=>{
+        const product = state.products.find(product=>product.id===cartItem.id);
+
+        return{
+          title : product.title,
+          price : product.price,
+          quantity : cartItem.quantity,
+        }
+      })
+    },
+
+    cartTotal(state, getters){
+      return getters.cartProducts.reduce((total,product)=>total + product.price * product.quantity,0)
+    },
+
+
+    productInStokes(){
+      return (product)=>{
+        return product.inventory > 0;
+      }
+    }
+  },
+
+
+
+
+Vuex provides a set of helper functions for working with the store, including:
+
+mapState: allows components to access the state from the store by mapping it to local computed properties
+
+mapGetters: allows components to access getter functions from the store by mapping them to local computed properties
+
+mapActions: allows components to dispatch actions to the store by mapping them to local methods
+
+mapMutations: allows components to commit mutations to the store by mapping them to local methods
+
+
+These helper functions can be used in a Vue component by importing them from the vuex library and using them in the computed, methods, or watch properties of the component.
+
+You can read more about Vuex and its helper functions in the official documentation. 
+
+
+
+This basically reduce the code and increase effeciency.
+
+
+
+
+
+Inside the compute we usually have multiple functions which makes it very bug, better we can use shortand which is mapHalpers
+
+import { mapState,mapGetters,mapActions,mapMutations } from 'vuex'
+
+
+computed : {
+        ...mapState({
+             products : state=>state.products, // same name as state in store
+        }),
+
+        ...mapGetters({
+            productInStokes : 'productInStokes',
+        }),
+
+         products(){
+              return this.$store.getters.availableProduct; // instead this we can use to disable btn if no stiokes
+             return this.$store.state.products;
+         },
+
+         productInStokes(){
+             return this.$store.getters.productInStokes
+         }
+    },
+
+
+As we can see products method is now replace with mapState and productInStokes with mapGetters

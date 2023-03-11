@@ -1,0 +1,29 @@
+In Vue.js, the script tag inside a Vue component typically contains several properties and methods that are used to define the behavior of the component.
+
+data: This property is used to define the data that the component will use. It should be a function that returns an object containing the data properties.
+
+methods: This property is used to define methods that can be called from the template. These methods can perform actions such as modifying data properties, making API calls, or handling events.
+
+computed: This property is used to define computed properties. Computed properties are properties that are derived from other properties and are automatically updated when their dependencies change.
+
+Note - > When we want to apply some functinality on data then method and when on existing data then computed
+
+components: This property is used to register child components that can be used inside the template of the parent component.
+
+props: This property is used to define properties that are passed down from a parent component to a child component.
+
+watch: This property is used to register watchers that will be triggered when specific data properties change.
+
+mounted: This lifecycle hook is called after the component has been mounted to the DOM. It can be used to perform actions such as making API calls or setting up event listeners.
+
+created: This lifecycle hook is called after the component instance is created and before the template is rendered.
+
+updated: This lifecycle hook is called after the component has been updated and the template has been re-rendered.
+
+destroyed: This lifecycle hook is called after the component has been destroyed and removed from the DOM.
+
+
+
+
+----------------Ek jam phal-------------------------->
+Example in methodExample.vue

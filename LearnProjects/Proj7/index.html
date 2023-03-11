@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./script.js" defer></script>
+
+    <title>Project 3</title>
+</head>
+<body class="bg-dark text-white">
+    <div class="container mycard">
+        <div class="row">
+            <div class="col-md-12" id="vapp">
+                <div class="clearItems">
+                    <h3 class="text-secontary mt-5">Your Bill Is : {{finalBill}} </h3>
+
+                    <button @click="clearItems()" class="btn mt-5 mb-5 btn-outline-warning">Clear Items</button>
+                </div>
+                    <div
+                    v-for="(course,index) in courseList"
+                    :key="course.id"
+                    class="card mt-5" 
+                    style="width: 18rem;"
+                    >
+
+                        <img v-bind:src="course.imgUrl" class="card-img-top" alt="sun pic">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">{{course.courseName}}</h5>
+                            <p class="card-text text-dark">{{course.subtitle}}</p>
+                            <p target="_blank" class="btn mt-3 btn-primary mt-2 bg-black">${{course.price}}</p>
+                            <button class="btn m-3 btn-outline-success" @click="addItems(course)">Buy Course</button>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

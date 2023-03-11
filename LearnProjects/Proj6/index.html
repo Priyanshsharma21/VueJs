@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./script.js" defer></script>
+
+    <title>Project 6</title>
+</head>
+
+<body class="bg-dark text-white">
+    <div class="container-fluid" id="vapp">
+        <form @submit.prevent="submitForm" class="Make_me_form">
+
+            <label>Name:</label>
+            <input v-model="formData.name" type="text">
+            
+            <label>Email:</label>
+            <input v-model="formData.email" type="email">
+            
+            <label>Password:</label>
+            <input v-model="formData.password" type="password">
+            
+            <label>Textarea:</label>
+            <textarea v-model="formData.textarea"></textarea>
+
+            <label>Select an option:</label>
+            <select v-model="formData.selectedOption">
+                <option v-for="option in options" :value="option.value">{{ option.text }}</option>
+            </select>
+
+            <label>Radio Buttons:</label>
+            <label v-for="(radioOption, index) in radioOptions">
+                <input type="radio" v-model="formData.selectedRadio" :value="radioOption.value" :key="index"> {{ radioOption.text }}
+            </label>
+
+            <button type="submit" class="btn btn-warning">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

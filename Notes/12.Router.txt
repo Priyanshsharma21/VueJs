@@ -1,0 +1,185 @@
+In order to do routing we have to make a folder called views in src
+
+Install - npm i vue-router@4 --save
+
+
+!!!!!!!!!!!!!!!!!!!!! main.js !!!!!!!!!!!!!!!!!!!!!!
+import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+
+const router = createRouter({
+    history : createWebHistory(),
+    routes : []
+})
+
+
+const app = createApp(App)
+app.use(router) ---------------------> Middleware
+app.mount('#app')
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-> createWebHistory is used to keep track of history of routes visited
+-> Routes are define by declearing route records to routes array(pre define object with special keys)
+
+!!!!!!!!!!!!!!!!!!!!! main.js !!!!!!!!!!!!!!!!!!!!!!
+import Home from './views/Home.vue'
+import About from './views/About.vue'
+
+  routes : [
+        {path : '/', name:'Home', component : Home},
+        {path : '/about', name:'About', component : About},
+    ]
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+ -> This routes contain object contain properties of path name and component to show there
+
+
+
+*************************App.vue********************************
+<template>
+    <router-link to="/">Home</router-link>
+    <router-link to="/about">About</router-link>
+                    or
+    <router-link :to="{path : '/about'}">About</router-link>
+
+    <router-view>
+    </router-view>
+</template>
+
+
+<script>
+
+</script>
+
+
+<style>
+
+</style>
+**********************************************************
+router link have to property in which we declear the route name
+The <router-view> tag in Vue.js is used to render a component for the current route.
+
+Inside the router-view we write code that is common amoung all the components
+
+In SPA we fetch only the data an component needed, but in regular website we have to fetch eberything like styles, logo, script etc.
+
+router link - internal link
+a - external link
+
+
+
+
+TODO--------------------Best Practices----------------------------------------------------------------
+
+make routes folder-----index.js----move router code there
+
+import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+import {createRouter,createWebHistory} from 'vue-router'
+
+
+const routes = [
+    {
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/about',
+        name: 'About',
+        component: About
+    },
+]
+
+
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: routes,
+})
+
+
+export default router
+
+--------------------------------------------------------------------------------
+Now import this router in mainjs and use it
+
+
+
+!----------------Dynamic Route----------------------------------------------------------------
+
+
+{
+        path: '/destination/:id',
+        name: 'DestinationShow',
+        component: ()=>import('../views/DestinationShow.vue')
+},
+
+using -> $route.params.id we can access the id
+
+
+we can use name routing by using ->
+
+{
+        path: '/destination/:id/:slug',
+        name: 'destination.show',
+        component: ()=>import('../views/DestinationShow.vue')
+},
+
+Now in mav link -> to attr we can do this ->
+
+:to="{name : 'destination.show',params : {id : destination.id, slug: destination.slug}}"
+
+ex -> /destination/1/brazil
+
+Now using $route.params.id
+Now using $route.params.slug we can access it.
+
+We can also use props to access id and slug like this
+
+
+ {
+        path: '/destination/:id/:slug',
+        name: 'destination.show',
+        component: ()=>import('../views/DestinationShow.vue'),
+        props : true,
+},
+
+
+in destinationShow
+props : {
+        id : {type : String, required : true}
+    },
+
+
+In index.js router we can also pass function and check some condition like : 
+
+ {
+        path: '/destination/:id/:slug',
+        name: 'destination.show',
+        component: ()=>import('../views/DestinationShow.vue'),
+        props : route=>({id : parseInt(route.params.id)})
+},
+
+
+
+----------------Nested Route------------------------------------------------
+{
+        path: '/destination/:id/:slug',
+        name: 'destination.show',
+        component: ()=>import('../views/DestinationShow.vue'),
+        props : route=>({...route.params, id : parseInt(route.params.id)}),
+        children : [
+            {
+                path: ':experienceSlug',
+                name: 'experience.show',
+                component: ()=>import('../views/ExperienceShow.vue'),
+                props : route=>({...route.params, id : parseInt(route.params.id)})
+            },
+        ]
+},
+
+And add router-view in destination

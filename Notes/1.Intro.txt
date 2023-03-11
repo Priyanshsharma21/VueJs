@@ -1,0 +1,81 @@
+Vue is an light weight frontend framework. (Evan You)
+
+It is known for its simplicity, performance,a dn scalablity.
+
+It is Injectable not like React.
+
+It use decelerative approch like react which makes it easy and light weight to make and deliver the project
+
+We can use large number of libraries to increase the functionalities, like lib for routing, SSR, State Management.
+
+It also focus on view layer of MVC and can be easily intregrate with other framework and libraries
+
+Some important features of vueJs are : 
+1. Virtual dom -> Whenever there is any changes made that chamges are not reflacted on real dom, an replica of dom is present which is present in form of Js DS and all the chnages took place on it and then real dom and JS DS dom compared and the only changed part will reflect
+
+2. Components -> Components are used to make UI
+
+3. Events -> v-on is added to DOM elements which is used to listen to the events
+
+Computed Properties
+This is one of the important features of VueJS. It helps to listen to the changes made to the UI elements and performs the necessary calculations. There is no need of additional coding for this.
+
+Templates
+VueJS provides HTML-based templates that bind the DOM with the Vue instance data. Vue compiles the templates into virtual DOM Render functions. We can make use of the template of the render functions and to do so we have to replace the template with the render function.
+
+Directives
+VueJS has built-in directives such as v-if, v-else, v-show, v-on, v-bind, and v-model, which are used to perform various actions on the frontend.
+
+Watchers
+Watchers are applied to data that changes. For example, form input elements. Here, we don’t have to add any additional events. Watcher takes care of handling any data changes making the code simple and fast.
+
+Routing
+Navigation between pages is performed with the help of vue-router.
+
+Lightweight
+VueJS script is very lightweight and the performance is also very fast.
+
+Vue-CLI
+VueJS can be installed at the command line using the vue-cli command line interface. It helps to build and compile the project easily using vue-cli.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tip as a react developer ->
+
+Understand the basics of Vue's reactivity system. Vue uses a reactivity system that allows it to update the view automatically when the data changes. This is different from React, where you have to manually update the state and re-render the component. Understanding how Vue's reactivity system works will help you write efficient and performant code.
+
+Learn about Vue's directives and how they are used to bind data to the template. Vue's directives, like v-if, v-for, v-bind, etc, are used to bind data to the template and control the logic of the view. Understanding these directives will help you write cleaner and more readable templates.
+
+Get familiar with Vue's component system and how it works. Vue's component system is similar to React's, but with some subtle differences. Understanding how Vue's components work, and how they communicate with each other, will help you write reusable and maintainable code.
+
+Study Vue's lifecycle hooks and when to use them. Vue provides several lifecycle hooks that you can use to run logic at specific points in the component's lifecycle. Understanding these hooks and when to use them will help you write logic that runs at the appropriate time.
+
+Practice, practice, practice! The more you practice writing Vue code, the more you'll understand how it works and the more comfortable you'll become with it. Try building small projects and experimenting with different features to get a better feel for Vue's capabilities.
+
+Learn about Vue's official CLI and how to use it to create, manage and build projects. It is a very helpful tool to start and manage projects, generate components and build the project.
+
+Try to use Vue's Devtools, it is a browser extension that can be used to inspect and debug Vue applications, it will help you a lot in debugging and understanding the internal workings of the framework.
+
+Learn about and use Vuex, it is the official state management library for Vue which makes it easy to manage and share state across the application.
+
+Read the official documentation and stay up-to-date with the latest version of Vue. The official documentation is a great resource to learn about new features and best practices.
+
+Join the vue community and participate in online forums and groups, it will help you to find solutions to problems and connect with other developers who are also learning Vue.

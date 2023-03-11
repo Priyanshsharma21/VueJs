@@ -1,0 +1,1 @@
+Watcher is like watchman, its like useEffect in react, whenever any value changes, like any prop or state then watcher will triggered and we can do some action based on it.

@@ -1,0 +1,32 @@
+v-if, v-else, v-else-if
+There is a element given by vue which is -<template></template>
+This will not take place in DOM
+
+Note -> If we have v-if then next we have v-else
+
+Whenever we want to show the elements based on bool we will wrap it in templates,
+<template></template>
+
+if we want v-if then next template should have v-else
+
+
+we can use v-else-if if multiple conditions
+
+    <div>
+        <template v-if="!isLogin">
+            <li v-if="isLogin" class="nav-item">
+                <a class="nav-link" href="#">SignUp</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">SignIn</a>
+            </li>
+        </template>
+        <template v-else>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+        </template>
+    </div>
+
+
+Note - If we want that element should will not show, means visiblity : none then we can use v-show with same as conditional rendering then elemet will not be visible but still present in DOM, most of the cases we will not use it but we can use it.

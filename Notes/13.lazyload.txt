@@ -1,0 +1,53 @@
+In normal dev mode when You load page then all the pages in your app will get load.
+using lazy loading we can prevent this. 
+Wen will onl get the current page and other will not be loaded at that time.
+this increase the effeciency
+
+This is called code splitting
+
+This is how we can do lazy routing
+
+
+const routes = [
+    {
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/about',
+        name: 'About',
+        component: ()=>import('../views/About.vue')
+    },
+    {
+        path: '/brazil',
+        name: 'Brazil',
+        component: ()=>import('../views/Brazil.vue')
+    },
+    {
+        path: '/hawaii',
+        name: 'Hawaii',
+        component: ()=>import('../views/Hawaii.vue')
+    },
+    {
+        path: '/jamaica',
+        name: 'Jamaica',
+        component: ()=>import('../views/Jamaica.vue')
+    },
+    {
+        path: '/panama',
+        name: 'Panama',
+        component: ()=>import('../views/Panama.vue')
+    },
+]
+
+
+Now code is split into chunks, when we do npm run build the for each page you will see seprate js file
+
+In normal CLI app we can use magic comment to name the chunks like this
+
+{
+        path: '/panama',
+        name: 'Panama',
+        component: ()=>import(/*webpackChunkName : "panama"'../views/Panama.vue')
+    },

@@ -1,0 +1,17 @@
+3. v-loop - 
+
+                <div
+                    v-for="(course,index) in courseList"
+                    :key="course.id"
+                    class="card mt-5" 
+                    style="width: 18rem;"
+                    >
+
+                        <img :src="course.imgUrl" class="card-img-top" alt="sun pic">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark">{{course.courseName}}</h5>
+                            <p class="card-text text-dark">{{course.subtitle}}</p>
+                            <a :href="url" target="_blank" class="btn btn-primary mt-2">{{course.price}}</a>
+                        </div>
+
+                    </div>

@@ -1,0 +1,28 @@
+There are some directives that we can use in to bind html with our js
+
+
+1. v-bind - 
+
+Shortend - :
+            <img :src="imageUrl" class="card-img-top" alt="sun pic">
+            or
+            <img v-bind:src="imageUrl" class="card-img-top" alt="sun pic">
+
+            dynamic attribute 
+            <button v-bind:[key]="value"></button>
+            <button :[key]="value"></button>
+
+2. v-text - 
+
+            <button v-text="msg"></button>
+            or
+            <button>{{msg}}</button>
+
+
+
+Now there are more directives but we should not use on directive in other, except loop.
+
+
+
+
+

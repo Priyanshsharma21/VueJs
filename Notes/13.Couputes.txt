@@ -1,0 +1,26 @@
+Compute method is used when we want to calculate some value on given data and use it in out web page like this : 
+
+
+<template>
+  <div>
+    <p>Full Name: {{ fullName }}</p>
+    <p>First Name: <input v-model="firstName"></p>
+    <p>Last Name: <input v-model="lastName"></p>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      firstName: 'John',
+      lastName: 'Doe',
+    }
+  },
+  computed: {
+    fullName: function() {
+      return this.firstName + ' ' + this.lastName;
+    }
+  }
+}
+</script>

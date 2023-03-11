@@ -1,0 +1,45 @@
+So we can use data but also we have two more things inside the App
+
+1. methods
+2. computed 
+
+
+const App = {
+    data(){
+        return {
+            courseList : [
+                {
+                    id: 1,
+                    courseName: 'Introduction to Programming',
+                    subtitle: 'Learn the basics of programming',
+                    price: 100,
+                    imgUrl: './assets/mongodb2.jpeg'
+                },
+                {
+                    id: 2,
+                    courseName: 'Advanced JavaScript',
+                    subtitle: 'Master the JavaScript language',
+                    price: 150,
+                    imgUrl: './assets/next-js.png'
+                },
+                {
+                    id: 3,
+                    courseName: 'Web Mobile with React Native',
+                    subtitle: 'Build Mobile applications with React Native',
+                    price: 200,
+                    imgUrl: './assets/react-native-preview.png'
+                }
+            ],
+
+        }
+    },
+    computed : {
+        function in which we can't pass params
+    }
+    methods : {
+        functions in which we can pass params
+    }
+}
+
+
+Vue.createApp(App).mount('#vapp')

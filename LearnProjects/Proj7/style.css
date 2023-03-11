@@ -1,0 +1,9 @@
+.clearItems{
+    display: flex;
+    justify-content: space-between;
+}
+
+.main_card{
+    display: flex;
+
+}

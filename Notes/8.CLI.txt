@@ -1,0 +1,25 @@
+If we want to make complete VueJs frontend then we can use cli.js
+I will use VITE
+
+npm create vite@latest 
+choose vue---> javascript.
+
+
+File & Folder Structure ->
+1. package.json ---------> all the dependencies we will install.
+2. If we use vite then, vite.configjs file (bable.config.js) -> use to convert your morden js into js which can be understand by browser
+3. index.html
+This is only html file we have which will contain one div with id = app and our whole code will come inside it.
+
+
+4. public contian only one svg
+5. main folder is source(src)
+This folder contain main.js in which we will createApp(App) and mount our vue in #app id
+
+
+App.vue is the parent of all the components and pages. here all the code will start.
+components folder will contain all the components.
+assets will have all the assets
+
+
+Additional we will make -> pages folder, util folder, lib folder for more functionality

@@ -1,0 +1,32 @@
+Vue will contain main three things ->
+1. <templates></templates>
+2. <script></script>
+3. <style></style>
+
+Inside the script part we can write script,import, export
+
+Template will have html part
+
+Style will have css
+
+
+
+
+App.vue---------------->
+
+<template>
+  <h1>Hello Vue</h1>
+</template>
+
+
+
+<script>
+  export default {
+    name : 'App',
+  }
+</script>
+
+
+<style>
+
+</style>

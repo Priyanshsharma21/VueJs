@@ -1,0 +1,20 @@
+In vue js we can have props inside the 
+
+
+<script>
+export default {
+    name : 'Icon',
+    props : {
+        iconName : {
+            type : String,
+            required : true,
+        }
+    }
+
+}
+</script>
+
+Like this and we can define the validations in it also.
+
+Props are same as react, which is used to hold some information, and this are immutable.
+we can pass data from one component to other using props
